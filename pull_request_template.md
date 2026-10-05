@@ -17,7 +17,11 @@ Solo si el PR toca consultas, SP o datasources. Regla vigente:
   (helper SosJdbcPaginator de com.sos:sos-platform-web-starter 1.1.0 o superior).
 - Un espejo _op solo para reusar un SP del legado: indicar aqui que SP reusa y por que no se puede
   pasar a JDBC en el micro.
-- Sin JPA en codigo nuevo. Un dato de otro dominio se pide por HTTP al micro dueno.
+- Escrituras (insert, update, delete) tambien por JDBC con SQL explicito: transaccion en el caso de
+  uso, clave generada con KeyHolder u OUTPUT INSERTED, verificar filas afectadas y batchUpdate para
+  lotes. Si el legado escribe con un SP con logica de negocio, se llama ese SP tal cual, sin ALTER.
+- Sin JPA en codigo nuevo, ni para leer ni para escribir. Un dato de otro dominio se lee y se
+  escribe por HTTP al micro dueno.
 -->
 
 ## Como se probo
