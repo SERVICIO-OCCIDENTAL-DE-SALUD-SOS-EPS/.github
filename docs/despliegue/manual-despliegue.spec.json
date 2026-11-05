@@ -35,7 +35,7 @@
         "filas": [
           [
             "Repositorio .github (main 9578b34)",
-            "Clon con --filter=blob:none en el área temporal de la medición: pull_request_template.md e historial."
+            "Clon con --filter=blob:none: pull_request_template.md e historial."
           ],
           [
             "API de GitHub (lectura)",
