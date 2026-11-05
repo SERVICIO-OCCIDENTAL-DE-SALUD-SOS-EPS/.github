@@ -1,0 +1,195 @@
+{
+  "app": ".github",
+  "version": "main-9578b34",
+  "control_versiones": [
+    [
+      "04/11/2026",
+      "main-9578b34",
+      "Punta de main medida el 04/11/2026: commit 9578b34e36107fa19317fed9fa91ac046128c1af (05/10/2026, merge del PR #1). Sin tags de versión.",
+      "Esfera",
+      "Por confirmar"
+    ]
+  ],
+  "bloques": [
+    {
+      "h1": "INTRODUCCIÓN"
+    },
+    {
+      "p": "Este documento describe el repositorio .github de la organización SERVICIO-OCCIDENTAL-DE-SALUD-SOS-EPS, cuya descripción en GitHub es \"Archivos por defecto de la organizacion (plantilla de PR)\". No tiene runtime: GitHub toma de él los archivos de comunidad por defecto para todos los repositorios de la organización que no tengan el suyo."
+    },
+    {
+      "p": "Contiene un único fichero, pull_request_template.md: la plantilla con que se abre todo pull request de la organización. SOS no usa Jenkins ni WebSphere para este repositorio y no hay nada que desplegar: el cambio rige en cuanto se mergea a main. La versión de este manual es la punta de main, la rama por defecto."
+    },
+    {
+      "h2": "Referencias"
+    },
+    {
+      "p": "Como materiales de referencia se utilizaron los siguientes documentos y fuentes, medidos el 04/11/2026:"
+    },
+    {
+      "tabla": {
+        "encabezado": [
+          "Nombre del documento",
+          "Detalle"
+        ],
+        "filas": [
+          [
+            "Repositorio .github (main 9578b34)",
+            "Clon con --filter=blob:none en el área temporal de la medición: pull_request_template.md e historial."
+          ],
+          [
+            "API de GitHub (lectura)",
+            "Datos del repositorio (visibilidad pública, rama por defecto main), ramas, workflows (ninguno) y reglas de main; búsqueda de código de otras plantillas de PR en la organización."
+          ]
+        ]
+      }
+    },
+    {
+      "h2": "Estado en producción"
+    },
+    {
+      "p": "En uso: la plantilla rige para la organización desde el 05/10/2026. La búsqueda de código no encuentra otra pull_request_template.md en ningún repositorio de la organización, así que ninguno la reemplaza."
+    },
+    {
+      "h1": "REQUERIMIENTOS PARA EL DESPLIEGUE"
+    },
+    {
+      "h2": "Requerimientos mínimos de Hardware"
+    },
+    {
+      "p": "No aplica: GitHub sirve la plantilla; no hay proceso propio."
+    },
+    {
+      "h2": "Requerimientos mínimos de Software"
+    },
+    {
+      "p": "No aplica: solo se requiere GitHub. GitHub solo usa los archivos por defecto de un repositorio .github público, y este lo es."
+    },
+    {
+      "h2": "Requerimientos de Configuración"
+    },
+    {
+      "p": "No aplica: no hay variables, secretos ni workflows (la API devuelve 0 workflows)."
+    },
+    {
+      "h2": "Datasources Requeridos"
+    },
+    {
+      "p": "No aplica: no se conecta a bases de datos."
+    },
+    {
+      "h1": "PASOS PARA EL DESPLIEGUE"
+    },
+    {
+      "p": "Contenido de la plantilla de PR por defecto (pull_request_template.md):"
+    },
+    {
+      "bullets": [
+        "Primera línea obligatoria \"Desarrollador:\" seguida del correo corporativo de quien desarrolló el cambio (varios, separados por coma; la plantilla trae un marcador de posición que se reemplaza). Según la propia plantilla, sin esa línea con un correo real la revisión automática no revisa el PR.",
+        "Sección \"Que cambia\": qué hace el PR y por qué, con la tarjeta o incidencia relacionada.",
+        "Sección \"Acceso a datos\", solo si el PR toca consultas, SP o datasources, con la regla vigente: cero SP nuevos; lo que no reusa un SP del legado va por JDBC en el micro, paginado en la base con el helper SosJdbcPaginator de com.sos:sos-platform-web-starter 1.1.0 o superior; un espejo _op solo para reusar un SP del legado; escrituras por JDBC con SQL explícito y transacción; sin JPA en código nuevo; un dato de otro dominio se lee y escribe por HTTP al micro dueño.",
+        "Sección \"Como se probo\": pruebas agregadas o ajustadas y verificación manual."
+      ]
+    },
+    {
+      "h2": "Despliegue por primera vez"
+    },
+    {
+      "p": "No aplica: el repositorio ya existe. Si se recreara, debe llamarse .github, ser público y tener el fichero en la raíz."
+    },
+    {
+      "h2": "Actualizar la aplicación"
+    },
+    {
+      "pasos": [
+        "PR a main (única rama). Ruleset 22150224 \"SOS - master protegida\" (aplica a master y main): 2 aprobaciones, al menos una del team approvers, conversaciones resueltas, solo merge commit, sin borrado ni force push, y el workflow requerido branch-flow-guard.yaml.",
+        "Al mergear, la plantilla nueva rige para los PR que se abran desde ese momento en todos los repositorios sin plantilla propia."
+      ]
+    },
+    {
+      "h2": "Corrección urgente (hotfix)"
+    },
+    {
+      "p": "No aplica: una corrección es un PR a main."
+    },
+    {
+      "h2": "Reversión (rollback)"
+    },
+    {
+      "p": "PR de revert a main; la plantilla anterior rige desde el merge."
+    },
+    {
+      "h2": "Correlacionar Roles"
+    },
+    {
+      "p": "No aplica: la plantilla no maneja roles. La revisión la exige el ruleset 22150224 (team approvers)."
+    },
+    {
+      "h2": "Variables de aplicación"
+    },
+    {
+      "p": "No aplica."
+    },
+    {
+      "h1": "SCRIPTS PARA EJECUTAR EN LA BASE DE DATOS"
+    },
+    {
+      "p": "No aplica: el repositorio no trae scripts SQL."
+    },
+    {
+      "h1": "CONFIGURACIÓN Y MANTENIMIENTO"
+    },
+    {
+      "bullets": [
+        "Verificación: abrir un PR en cualquier repositorio de la organización y comprobar que el cuerpo trae la plantilla.",
+        "El repositorio es público: no debe contener datos internos ni credenciales."
+      ]
+    },
+    {
+      "h1": "PLANES DE DESPLIEGUE"
+    },
+    {
+      "p": "Plan de Despliegue Número: 1 (Cambio de la plantilla de PR)"
+    },
+    {
+      "tabla": {
+        "encabezado": [
+          "ID",
+          "Actividad",
+          "Sección del Documento",
+          "Ambiente",
+          "Estado"
+        ],
+        "filas": [
+          [
+            "1",
+            "PR a main con 2 aprobaciones",
+            "3.2",
+            "GitHub",
+            "Realizado (9578b34)"
+          ],
+          [
+            "2",
+            "Verificar la plantilla en un PR nuevo",
+            "5",
+            "GitHub",
+            "Por confirmar"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Fecha probable de despliegue: no aplica; la plantilla vigente es del 05/10/2026."
+    },
+    {
+      "h1": "PENDIENTES POR CONFIRMAR"
+    },
+    {
+      "bullets": [
+        "Qué proceso hace la \"revisión automática\" que exige la línea Desarrollador (la plantilla no lo nombra).",
+        "El repositorio es público y la plantilla expone reglas internas de desarrollo y el dominio sos.com.co: confirmar que es aceptable.",
+        "Revisor de SOS del documento."
+      ]
+    }
+  ]
+}
