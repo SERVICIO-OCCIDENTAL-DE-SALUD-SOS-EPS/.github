@@ -18,7 +18,7 @@
       "p": "Este documento describe el repositorio .github de la organización SERVICIO-OCCIDENTAL-DE-SALUD-SOS-EPS, cuya descripción en GitHub es \"Archivos por defecto de la organizacion (plantilla de PR)\". No tiene runtime: GitHub toma de él los archivos de comunidad por defecto para todos los repositorios de la organización que no tengan el suyo."
     },
     {
-      "p": "Contiene un único fichero, pull_request_template.md: la plantilla con que se abre todo pull request de la organización. SOS no usa Jenkins ni WebSphere para este repositorio y no hay nada que desplegar: el cambio rige en cuanto se mergea a main. La versión de este manual es la punta de main, la rama por defecto."
+      "p": "Contiene dos plantillas: la plantilla por defecto, pull_request_template.md, con que se abre todo pull request de la organización, y la plantilla de promoción, PULL_REQUEST_TEMPLATE/promocion.md (PR #3), que se elige agregando ?template=promocion.md a la URL de comparación en las promociones a qa y a master, los hotfix y los back-merges. SOS no usa Jenkins ni WebSphere para este repositorio y no hay nada que desplegar: el cambio rige en cuanto se mergea a main. La versión de este manual es la punta de main, la rama por defecto."
     },
     {
       "h2": "Referencias"
@@ -85,7 +85,7 @@
     },
     {
       "bullets": [
-        "Primera línea obligatoria \"Desarrollador:\" seguida del correo corporativo de quien desarrolló el cambio (varios, separados por coma; la plantilla trae un marcador de posición que se reemplaza). Según la propia plantilla, sin esa línea con un correo real la revisión automática no revisa el PR.",
+        "Primera línea obligatoria \"Desarrollador:\" seguida del correo corporativo de quien desarrolló el cambio (varios, separados por coma; la plantilla trae un marcador de posición que se reemplaza). Según la propia plantilla, sin esa línea con un correo real la revisión automática no revisa el PR; esa revisión automática es un apoyo mientras exista y no reemplaza la aprobación del team approvers.",
         "Sección \"Que cambia\": qué hace el PR y por qué, con la tarjeta o incidencia relacionada.",
         "Sección \"Acceso a datos\", solo si el PR toca consultas, SP o datasources, con la regla vigente: cero SP nuevos; lo que no reusa un SP del legado va por JDBC en el micro, paginado en la base con el helper SosJdbcPaginator de com.sos:sos-platform-web-starter 1.1.0 o superior; un espejo _op solo para reusar un SP del legado; escrituras por JDBC con SQL explícito y transacción; sin JPA en código nuevo; un dato de otro dominio se lee y escribe por HTTP al micro dueño.",
         "Sección \"Como se probo\": pruebas agregadas o ajustadas y verificación manual."
@@ -99,6 +99,9 @@
     },
     {
       "h2": "Actualizar la aplicación"
+    },
+    {
+      "p": "Quién hace cada paso: el desarrollador abre los pull request (a develop, la promoción a qa, la de qa a master y los de hotfix); los aprueba el team approvers y, en producción, el aprobador de PROD; en qa y master mergea capa media o devops. Detalle en la wiki de la plataforma, 40-desarrollo/como-abrir-un-pr-de-promocion.md."
     },
     {
       "pasos": [
