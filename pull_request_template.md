@@ -2,7 +2,11 @@ Desarrollador: nombre.apellido@sos.com.co
 
 <!--
 Obligatorio: reemplazar por el correo corporativo SOS de quien desarrollo el cambio (varios, separados
-por coma). Sin esta linea con un correo real, la revision automatica no revisa el PR.
+por coma). Identifica al responsable del cambio para quien revisa y aprueba, y deja la trazabilidad en el PR.
+La revision automatica, mientras exista, tambien necesita esta linea con un correo real.
+
+Si este PR es una promocion (develop -> qa, release/* -> qa, qa -> master, hotfix/* -> master o un
+back-merge), usar la plantilla de promocion: agregar ?template=promocion.md a la URL de comparacion.
 -->
 
 ## Que cambia
